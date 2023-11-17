@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Membership</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="/img/favicon.png" rel="icon">
+  <link href="/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/vendor/aos/aos.css" rel="stylesheet">
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- Template Main CSS File -->
+  <link href="/css/admin-portal.css" rel="stylesheet">
+
+  <!-- JQuery Files -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+  <!-- Datatable Files -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+
+</head>
+
+<body>
+
+  <!-- ======= Mobile nav toggle button ======= -->
+  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+
+  <!-- ======= Header ======= -->
+  <header id="header">
+    <div class="d-flex flex-column">
+
+      <div class="profile">
+        <img src="/uploads/<%=user.avatar.data%>" alt="" class="img-fluid rounded-circle">
+        <h1 class="text-light"><%=`${user.fname} ${user.lname}`%></h1>
+        <div>
+            <a href="/logout" class="logout text-btn">Logout</a>
+        </div>
+      </div>
+
+      <nav id="navbar" class="nav-menu navbar flex-grow-1">
+          <ul>
+            <li><a href="admin-index" class="nav-link"><i class="bi bi-house"></i> <span>Home</span></a></li>
+            <li><a href="package" class="nav-link"><i class="bi bi-box-seam"></i> <span>Add Package</span></a></li>
+            <li><a href="tracking" class="nav-link"><i class="bi bi-pin-map"></i> <span>Track</span></a></li>
+            <li><a href="membership" class="nav-link active"><i class="bi bi-cash"></i> <span>Membership</span></a></li>
+            <li><a href="package-log" class="nav-link"><i class="bi bi-hdd-stack"></i> <span>Package Log</span></a></li>
+          </ul>
+      </nav><!-- .nav-menu -->
+
+      
+      
+    </div>
+
+    
+  </header><!-- End Header -->
+
+  <main id="main">
+
+    <!-- ======= Membership Search Section ======= -->
+    <section id="get-a-quote" class="get-a-quote">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Find Membership</h2>
+        </div>
+
+        <div class="row g-0">
+
+          <div class="col">
+            <form action="/findMember" method="post" onsubmit="return validation();">
+              <div class="row gy-4">
+
+                <div class="col-lg-12">
+                  <h4>Personal Details</h4>
+                </div>
+
+                <div class="col-md-5">
+                  <input type="text" name="name" class="form-control" placeholder="Full Name" required>
+                </div>
+
+                <div class="col-md-5">
+                  <input type="text" class="form-control" name="memberCnic" placeholder="Aadhar" pattern="[0-9]{5}[0-9]{7}[0-9]{1}"
+                  minlength=13 required>
+                </div>
+
+                <div class="col-md-2 text-center">
+                    <button id="searchBtn" type="submit">Search</button>
+                </div>
+
+              </div>
+            </form>
+          </div><!-- End Membership Search Form -->
+          <script>
+            function validation() {
+              $('#popup-track-order').modal('show');
+            }
+          </script>
+
+        </div>
+
+       <!-- table showing membership results -->
+       <div id="table_div" class="row g-0 mt-3">
+        <div class="col">
+          <form action="#" method="" class="php-email-form">
+            <a onclick="$('#table_div').hide();" id="close_icon_btn"><i class="fa fa-close"></i></a>
+            <table id="membership_table_id" class="table table-borderless table-hover">
+              <thead>
+                  <tr>
+                      <th>Full Name</th>
+                      <th>Aadhar</th>
+                      <th>End Date</th>
+                      <th>Membership Code</th>
+                  </tr>
+              </thead>
+            </table>
+          </form>
+        </div>
+
+      </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Membership Search Section -->
+
+    <!-- ======= Get a Quote Section ======= -->
+    <section id="get-a-quote" class="get-a-quote">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Purchase Membership</h2>
+        </div>
+
+        <div class="row g-0">
+
+          <div class="col">
+            <form action="/membership-form" method="post">
+              <div class="row gy-4">
+
+                <div class="col-lg-12">
+                  <h4>Your Personal Details</h4>
+                </div>
+
+                <div class="col-md-6">
+                  <input type="text" name="memberName" class="form-control" placeholder="Full Name" required>
+                </div>
+
+                <div class="col-md-6">  
+                  <input type="text" class="form-control" name="memberCnic" placeholder="Aadhar"
+                  minlength=13 required>
+                </div>
+
+                <div class="col-lg-12">
+                  <h4>Payment Details</h4>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <select name="payment_type" id="payment_type" class="form-select" on onchange="displayPaymentFields();">
+                    <option value="cash" selected>Cash</option>
+                    <option value="card">Mastercard</option>
+                  </select>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <select name="package" id="package" class="form-select">
+                    <option value="classic-lite">Classic-Lite</option>
+                    <option value="classic-pro">Classic-Pro</option>
+                    <option value="gold">Gold</option>
+                    <option value="premium">Premium</option>
+                  </select>
+                </div>
+                
+                <div class="col-lg-12">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="card_holder_name"
+                    id="card-holder-name"
+                    placeholder="Card Holder Name"
+                    
+                  />
+                </div>
+    
+                <div class="col-md-4">
+                    <input
+                      type="number"
+                      class="form-control"
+                      name="card_expiry_month"
+                      id="card-expiry-month"
+                      placeholder="Card Expiry Month"
+                      min="1" max="12"
+                      
+                    />
+                </div>
+
+                <div class="col-md-4">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="card_expiry_year"
+                    id="card-expiry-year"
+                    placeholder="Card Expiry Year"
+                    pattern="[0-9]{4}"
+                    
+                  />
+                </div>
+
+                <div class="col-md-4">
+                    <input
+                    type="text"
+                    name="securitykey"
+                    class="form-control"
+                    id="cvv"
+                    placeholder="CVV"
+                    pattern="[0-9]{3}"
+                    
+                  />
+                </div>
+
+                <div class="col-md-12 text-center">
+                    <button type="submit">Submit</button>
+                </div>
+
+              </div>
+            </form>
+          </div><!-- End Quote Form -->
+
+        </div>
+
+      </div>
+    </section><!-- End Get a Quote Section -->
+
+  </main><!-- End #main -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="/vendor/aos/aos.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="/vendor/typed.js/typed.min.js"></script>
+  <script src="/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/js/admin-portal.js"></script>
+
+</body>
+
+</html>

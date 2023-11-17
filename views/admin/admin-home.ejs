@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Admin Homepage</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="/img/favicon.png" rel="icon">
+  <link href="/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="/vendor/aos/aos.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="/css/admin.css" rel="stylesheet">
+
+  <!-- JQuery Files -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+      <a href="admin-home" class="logo d-flex align-items-center">
+        <img src="/img/app-logo.png" alt="">
+      </a>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="login text-btn" data-bs-toggle="modal" data-bs-target="#popup-login">Login</a></li>
+          <li><a class="signup text-btn" data-bs-toggle="modal" data-bs-target="#popup-signup">Sign up</a></li>
+        </ul>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+  <!-- End Header -->
+
+  <!-- ======= Login Pop-up Section ======= -->
+  <div id="popup-login" class="modal fade">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content loginDiv">
+        <div class="modal-body">
+          <span class="text-btn"
+            data-bs-dismiss="modal">Go back
+          </span>
+
+          <form action="/login" method="post">
+            <h2 class="mt-2">Log In</h2>
+            <div class="row mt-5 mb-3">
+              <input id="emp-id" class="form-control" type="text" name="emp_id" title="Employee ID" placeholder="Employee ID" required/>
+            </div>
+            <div class=" row my-3">
+              <input id="password" class="form-control" type="password" name="password" title="Password" placeholder="Password" required/>
+            </div>
+
+            <span class="text-btn" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#popup-forgotpass">Forgot Password?</span>
+
+            <div class="container-fluid">
+              <div class="row mt-5">
+                <button type="submit" class="col btn text-center">Log in</button>
+              </div>
+
+              <div class="row mt-3">
+                <span class="col">
+                  Don't have an account? <span class="text-btn" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#popup-signup">Sign up</span> 
+                </span>
+              </div>
+            </div> 
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= Forgot Password Pop-up Section ======= -->
+  <div id="popup-forgotpass" class="modal modal-lg fade">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content forgotpassDiv">
+        <div class="modal-body">
+          <span class="text-btn"
+            data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#popup-login" >Go back
+          </span>
+
+          <form action="/forgetPass" method="post">
+            <h2 class="mt-2">Forgot Password</h2>
+            <div class="row mt-5 mb-3">
+              <input id="emp-id" class="form-control" type="text" name="emp_id" title="Employee ID" placeholder="Employee ID" required/>
+            </div>
+            
+            <div class="row my-3">
+              <input id="email" class="form-control" type="email" name="email" title="Email" placeholder="Email" required/>
+            </div>
+
+            <div class="container">
+              <div class="row mt-5">
+                <button type="submit" class="col btn text-center" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#popup-passcode">Send Code</button>
+              </div>
+            </div> 
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= Code intimation Pop-up Section ======= -->
+  <div id="popup-passcode" class="modal fade">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content forgotpassDiv">
+        <div class="modal-body">
+          <span class="text-btn"
+            data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#popup-login" >Go back
+          </span>
+
+          <form action="#">
+            <h2 class="mt-2">Password Reset</h2>
+            <div class="row mt-5 mb-3">
+              <input id="forget_code" class="form-control" type="text" name="forget_code" title="Enter intimation code" placeholder="Code" required/>
+              <p id="invalid_code"></p>
+            </div>
+
+            <div class="container">
+              <div class="row mt-5">
+                <button type="submit" class="col btn text-center" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#popup-changepass">Submit</button>
+              </div>
+            </div> 
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= Change Password Pop-up Section ======= -->
+  <div id="popup-changepass" class="modal modal-lg fade">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content forgotpassDiv">
+        <div class="modal-body">
+          <span class="text-btn"
+            data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#popup-login" >Go back
+          </span>
+
+          <form action="#" method="post">
+            <h2 class="mt-2">Password Reset</h2>
+            <div class="row mt-5 mb-3">
+              <input id="new_pass" class="form-control" type="password" name="new_pass" title="New Password" placeholder="New Password" required/>
+            </div>
+            
+            <div class="row my-3">
+              <input id="new_confpass" class="form-control" type="password" name="new_confpass" title="Confirm New Password" placeholder="Confirm New Password" required/>
+            </div>
+
+            <div class="container">
+              <div class="row mt-5">
+                <button type="submit" class="col btn text-center" data-bs-dismiss="modal">Reset Password</button>
+              </div>
+            </div> 
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= Signup Pop-up Section ======= -->
+  <div id="popup-signup" class="modal modal-lg fade">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content signupDiv">
+        <div class="modal-body">
+          <span class="text-btn"
+            data-bs-dismiss="modal">Go back
+          </span>
+
+          <form action="/register" method="post" enctype="multipart/form-data">
+            <h2 class="mt-2">Sign Up</h2>
+
+            <div class="avatar mt-3">
+              <a href="#">
+                <img src="/img/testimonials-dp.png" alt="">
+              </a>
+              <div class="avatar-picker">
+                <input type="file" name="avatar" id="file-1" class="inputfile" data-multiple-caption="{count} files selected" multiple />
+                <label for="file-1">
+                  <i class="fa fa-camera"></i>
+                  <span>Choose Picture</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="row my-3">
+              <div class="col">
+                <input id="fname" class="form-control" type="text" name="fname" title="first name" placeholder="First Name"  required/>
+              </div>
+
+              <div class="col">
+                <input id="lname" class="form-control" type="text" name="lname" title="last name" placeholder="Last Name"  required/>
+              </div>
+            </div>
+
+            <div class="row my-3">
+              <div class="col">
+                <input id="emp-id" class="form-control" type="text" name="emp_id" title="Employee ID" placeholder="Employee ID"  required/>
+              </div>  
+            </div>
+
+            <div class="row my-3">
+              <div class="col">
+                <input id="cnic" class="form-control" type="text" name="cnic" title="CNIC" placeholder="Aadhar"  minlength=12 required/>
+              </div>  
+            </div>
+
+            <div class="row my-3">
+              <div class="col">
+                <input id="email" class="form-control" type="email" name="email" title="Email" placeholder="Email" required/>
+              </div>  
+            </div>
+
+            <div class="row my-3">
+              <div class="col">
+                <input id="phoneNo" class="form-control" type="tel" name="phoneNo" title="Phone Number" placeholder="Phone Number"  required/>
+              </div>  
+            </div>
+
+            <div class="row my-3">
+              <div class="col">
+                <input id="password" class="form-control" type="password" name="password" title="Password" placeholder="Password"  required/>
+              </div>  
+            </div>
+
+            <div class="row my-3">
+              <div class="col">
+                <input id="conf-password" class="form-control" type="password" name="conf-password" title="Confirm Password" placeholder="Confirm Password"  required/>
+              </div>  
+            </div>
+            
+
+            <div class="container-fluid">
+              <div class="row mt-5">
+                <button type="submit" class="btn text-center">Sign up</button>
+              </div>
+
+              <div class="row mt-3">
+                <span>
+                  Already have an account? <span class="text-btn" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#popup-login" >Log in</span> 
+                </span>
+              </div>
+            </div> 
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="hero d-flex align-items-center">
+    <div class="container">
+      <div class="row gy-4 d-flex justify-content-between">
+        <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
+          <h2 data-aos="fade-up">Your Delivery, Delivered Right</h2>
+          <p data-aos="fade-up" data-aos-delay="100">We aim to provide customers with fast, reliable, and cost-effective delivery services. We also strive to ensure that our customers have access to accurate tracking information and customer service representatives who are available to answer your question</p>
+
+          <div class="row gy-4" data-aos="fade-up" data-aos-delay="400">
+
+            <div class="col-lg-4 col-6">
+              <div class="stats-item text-center w-100 h-100">
+                <span data-purecounter-start="0" data-purecounter-end="278" data-purecounter-duration="1" class="purecounter"></span>
+                <p>Clients</p>
+              </div>
+            </div><!-- End Stats Item -->
+
+            <div class="col-lg-4 col-6">
+              <div class="stats-item text-center w-100 h-100">
+                <span data-purecounter-start="0" data-purecounter-end="13" data-purecounter-duration="1" class="purecounter"></span>
+                <p>Franchises</p>
+              </div>
+            </div><!-- End Stats Item -->
+
+            <div class="col-lg-4 col">
+              <div class="stats-item text-center w-100 h-100">
+                <span data-purecounter-start="0" data-purecounter-end="168" data-purecounter-duration="1" class="purecounter"></span>
+                <p>Workers</p>
+              </div>
+            </div><!-- End Stats Item -->
+
+          </div>
+        </div>
+
+        <div class="col-lg-5 order-1 order-lg-2 hero-img" data-aos="zoom-out">
+          <img src="/img/hero-img.svg" class="img-fluid mb-3 mb-lg-0" alt="">
+        </div>
+
+      </div>
+    </div>
+  </section><!-- End Hero Section -->
+
+  <!-- ======= Footer ======= -->
+  <%- include('../partials/footer') %>
+  <!-- End Footer -->
+
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="/vendor/aos/aos.js"></script>
+  <script src="/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/js/main.js"></script>
+  <!-- Chatbot JS File -->
+  <script src="/js/chatbot.js"></script>
+
+</body>
+
+</html>

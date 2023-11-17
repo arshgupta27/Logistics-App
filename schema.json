@@ -1,0 +1,44 @@
+{
+    "admin": [
+        {
+            "fullName": "xyz",
+            "emp_id": "EMP_01",
+            "email": "admin@gmail.com",
+            "password": "asdf@!34",
+            "CNIC": "12345-6789654-3",
+            "contact_no": "0333333333"
+        }
+    ],
+    "user": [
+        {
+            "fullName": "person",
+            "usercnic": "12345-6789076-8",
+            "userEmail": "member@gmail.com",
+            "contactNo": "03445555666",
+            "isMember": true,
+            "package": [
+                {
+                    "packageID": "######",
+                    "sourceCity": "Isb",
+                    "destinationCity": "Lhr",
+                    "destPostelCode": "12345",
+                    "destAddress": "Lane-v, xyz",
+                    "packageWeight": "10.3kg",
+                    "sensitivity": "medium",
+                    "estimatedCost": 10000.0
+                }
+            ]
+        }
+    ],
+    "member": [
+        {
+            "memberID": "12345-6789076-8",
+            "membershipType": "Basic",
+            "start_date": "01-01-2023",
+            "end_date": "06-01-2023",
+            "cardNo": 53663243242343,
+            "securityKey": 123,
+            "cardExpiry": "Dec-23"
+        }
+    ]
+}

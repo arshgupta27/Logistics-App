@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Tracking</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="/img/favicon.png" rel="icon">
+  <link href="/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/vendor/aos/aos.css" rel="stylesheet">
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- Template Main CSS File -->
+  <link href="/css/admin-portal.css" rel="stylesheet">
+
+  <!-- JQuery Files -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+  <!-- Datatable Files -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+
+</head>
+
+<body>
+
+  <!-- ======= Mobile nav toggle button ======= -->
+  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+
+  <!-- ======= Header ======= -->
+  <header id="header">
+    <div class="d-flex flex-column">
+
+      <div class="profile">
+        <img src="/uploads/<%=user.avatar.data%>" alt="" class="img-fluid rounded-circle">
+        <h1 class="text-light"><%=`${user.fname} ${user.lname}`%></h1>
+        <div>
+            <a href="/logout" class="logout text-btn">Logout</a>
+        </div>
+      </div>
+
+      <nav id="navbar" class="nav-menu navbar flex-grow-1">
+          <ul>
+            <li><a href="admin-index" class="nav-link"><i class="bi bi-house"></i> <span>Home</span></a></li>
+            <li><a href="package" class="nav-link"><i class="bi bi-box-seam"></i> <span>Add Package</span></a></li>
+            <li><a href="tracking" class="nav-link active"><i class="bi bi-pin-map"></i> <span>Track</span></a></li>
+            <li><a href="membership" class="nav-link"><i class="bi bi-cash"></i> <span>Membership</span></a></li>
+            <li><a href="package-log" class="nav-link"><i class="bi bi-hdd-stack"></i> <span>Package Log</span></a></li>
+          </ul>
+      </nav><!-- .nav-menu -->
+
+      
+    </div>
+
+    
+  </header><!-- End Header -->
+
+  <main id="main">
+
+    <!-- ======= Membership Search Section ======= -->
+    <section id="get-a-quote" class="get-a-quote">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Order Tracking</h2>
+        </div>
+
+        <div class="row g-0">
+
+          <div class="col">
+            <form action="/trackOrder" method="post" onsubmit="return validation();">
+              <div class="row gy-4">
+
+                <div class="col-lg-12">
+                  <h4>Package Details</h4>
+                </div>
+
+                <div class="col">
+                  <input type="text" class="form-control" name="packageID" placeholder="Tracking ID" required>
+                </div>
+
+                <div class="col-md-2 text-center">
+                    <button id="trackBtn" type="submit">Track</button>
+                </div>
+
+              </div>
+            </form>
+          </div><!-- End Membership Search Form -->
+        </div>
+
+      </div>
+    </section><!-- End Membership Search Section -->
+
+    <!-- ======= Get a Quote Section ======= -->
+    <!-- <section id="get-a-quote" class="get-a-quote">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Package Tracking Log</h2>
+        </div>
+
+        <div class="row g-0">
+
+          <div class="col">
+            <form action="forms/quote.php" method="post" class="php-email-form">
+              
+                <div class="row g-0 mt-3">
+                  <div class="col">
+                    <form action="#" method="" class="php-email-form">
+                      <table id="tracking_table_id" class="table table-borderless table-hover">
+                        <thead>
+                            <tr>
+                                <th>Full Name</th>
+                                <th>CNIC</th>
+                                <th>Source</th>
+                                <th>Destination</th>
+                                <th>Tracking No.</th>
+                            </tr>
+                        </thead>
+                      </table>
+
+                    </form>
+                  </div>
+
+                </div>
+              
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section> -->
+    <!-- End Get a Quote Section -->
+
+    <script>
+      function validation() {
+        // console.log(packg);
+        var pathLength = Number("<%=packg.path.length%>");
+        var cities = "<%=packg.path%>".toString();
+        var citiesArray = cities.split(",");
+        var index = 0;
+        var interVal = setInterval(function() {
+          document.getElementById("current-city").innerHTML = citiesArray[index++];
+          document.getElementById("current_city_line").className += " completed";
+          document.getElementById("cities_left").innerHTML = `Your package has yet to travel ${citiesArray.length-index} cities!`
+          if (citiesArray[index] == citiesArray[citiesArray.length - 1]) {
+            document.getElementById("cities_left").innerHTML = `Package Arrived!`
+            document.getElementById("destination_line").className += " completed";
+            clearInterval(interVal);
+          }
+        }, 4000);
+        
+        $('#popup-track-order').modal('show');
+      }
+    </script>
+    <!-- ------------ORDER TRACKING POP UP------------- -->
+    <div id="popup-track-order" class="modal fade modal-lg ">
+      <div class="modal-dialog modal-dialog-centered bg-transparent">
+        <div class="modal-content trackingCard">
+          <div class="modal-body ">
+            <!-- <span class="text-btn" data-bs-dismiss="modal"
+              >Go back
+            </span> -->
+            <div
+              class="container px-md-4 py-5 mx-auto px-2 "
+            >
+            <div class="innerCard ">
+              
+              <div class="row d-flex justify-content-between statusBar">
+                
+                <div class="d-flex justify-content-between">
+                  <h3>
+                    ORDER 
+                  </h3>
+                                           
+                
+                <div class="flex-column text-sm-right ">
+                    
+                  <p style="font-size: 25px">
+                    <span class="font-weight-bold" style="color:  #c51f1f;"><%=packg.packageID%></span>
+                  </p>
+                </div> 
+              </div>
+                
+                
+              </div>
+              <div class="container">
+                
+                <div class="row">
+                          <div class="col-12 col-md-10 hh-grayBox pt45 pb20">
+                            <div class="flex-column text-sm-center ">
+                    
+                              <p style="font-size: 25px">
+                                <span id="cities_left" class="font-weight-bold">Your package has yet to travel <%=packg.path.length%> cities!</span>
+                              </p>
+                            </div> 
+                            <div class="row justify-content-between">
+                              <!-- Order Shipped -->
+                              <div class="order-tracking completed">
+                                <span class="is-complete"></span>   
+                                <div class="iconBox">
+                                  <i class="bi bi-truck"></i>
+                                  <div class="d-flex flex-column">
+                                    <p class="font-weight-bold">Order Shipped</p>
+                                    <h5><%=packg.sourceCity%></h5>
+                                  </div>
+                                </div>
+                              </div>
+                              <!-- en Route -->
+                              <div id="current_city_line" class="order-tracking">
+                                <span class="is-complete"></span>
+                                  <div class="iconBox">
+                                    <i class="bi bi-truck-front"></i>
+                                    <div class="d-flex flex-column">
+                                      <p class="font-weight-bold">Order En Route</p>
+                                      <h5 id="current-city"></h5>
+                                    </div>
+                                  </div>
+                                </div>
+                              <!-- Order Delivered -->
+                              <div id="destination_line" class="order-tracking">
+                                <span class="is-complete"></span>
+                                <div class="iconBox">
+                                  <i class="bi bi-box-seam-fill" ></i>
+                                  <div class="d-flex flex-column">
+                                    <p class="font-weight-bold">Order Arrived</p>
+                                    <h5><%=packg.destinationCity%></h5>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                  </div> 
+    
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ------------ORDER TRACKING POP UP------------- -->
+
+  </main><!-- End #main -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="/vendor/aos/aos.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="/vendor/typed.js/typed.min.js"></script>
+  <script src="/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/js/admin-portal.js"></script>
+
+</body>
+
+</html>

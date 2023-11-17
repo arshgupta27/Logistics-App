@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+  <title>Homepage</title>
+  <meta content="" name="description" />
+  <meta content="" name="keywords" />
+
+  <!-- Favicons -->
+  <link href="/img/favicon.png" rel="icon" />
+  <link href="/img/apple-touch-icon.png" rel="apple-touch-icon" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Vendor CSS Files -->
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+  <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" />
+  <link href="/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
+  <link href="/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+  <link href="/vendor/aos/aos.css" rel="stylesheet" />
+
+  <!-- Template Main CSS File -->
+  <link href="/css/main.css" rel="stylesheet" />
+
+  <!-- Order Tracking Resources -->
+  <!-- <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    /> -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+  <!-- ======= Header ======= -->
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+      <a href="index" class="logo d-flex align-items-center">
+        <img src="/img/app-logo.png" alt="" />
+      </a>
+
+      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a href="index" class="active">Home</a></li>
+          <li><a href="/">Seller Home</a></li>
+          <li><a href="about">About</a></li>
+          <li><a href="services">Services</a></li>
+          <li><a href="contact">Contact</a></li>
+          <li>
+            <a class="get-membership" href="membership-form">Get Membership</a>
+          </li>
+        </ul>
+      </nav>
+      <!-- .navbar -->
+    </div>
+  </header>
+  <!-- End Header -->
+  <!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="hero d-flex align-items-center">
+    <div class="container">
+      <div class="row gy-4 d-flex justify-content-between">
+        <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
+          <h2 data-aos="fade-up">Your Delivery, Delivered Right</h2>
+          <p data-aos="fade-up" data-aos-delay="100">
+            We aim to provide customers with fast, reliable, and
+            cost-effective delivery services. We also strive to ensure that
+            our customers have access to accurate tracking information and
+            customer service representatives who are available to answer your
+            question
+          </p>
+
+          <form action="/trackOrder" method="post" class="form-search d-flex align-items-stretch mb-3"
+            onsubmit="return validation();">
+            <input type="text" class="form-control" name="packageID" placeholder="Parcel Tracking Number" required />
+            <button type="submit" class="btn btn-primary-setup">
+              Track
+            </button>
+          </form>
+
+          <script>
+            function validation() {
+              var pathLength = Number("<%=packg.path.length%>");
+              var cities = "<%=packg.path%>".toString();
+              var citiesArray = cities.split(",");
+              var index = 0;
+              var interVal = setInterval(function () {
+                document.getElementById("current-city").innerHTML = citiesArray[index++];
+                document.getElementById("current_city_line").className += " completed";
+                document.getElementById("cities_left").innerHTML = `Your package has yet to travel ${citiesArray.length - index} cities!`
+                if (citiesArray[index] == citiesArray[citiesArray.length - 1]) {
+                  document.getElementById("cities_left").innerHTML = `Package Arrived!`
+                  document.getElementById("destination_line").className += " completed";
+                  clearInterval(interVal);
+                }
+              }, 4000);
+
+              $('#popup-track-order').modal('show');
+            }
+          </script>
+
+          <!-- <div></div> -->
+          <div class="row gy-4" data-aos="fade-up" data-aos-delay="400">
+            <div class="col-lg-4 col-6">
+              <div class="stats-item text-center w-100 h-100">
+                <span data-purecounter-start="0" data-purecounter-end="278" data-purecounter-duration="1"
+                  class="purecounter"></span>
+                <p>Clients</p>
+              </div>
+            </div>
+            <!-- End Stats Item -->
+
+            <div class="col-lg-4 col-6">
+              <div class="stats-item text-center w-100 h-100">
+                <span data-purecounter-start="0" data-purecounter-end="13" data-purecounter-duration="1"
+                  class="purecounter"></span>
+                <p>Franchises</p>
+              </div>
+            </div>
+            <!-- End Stats Item -->
+
+            <div class="col-lg-4 col">
+              <div class="stats-item text-center w-100 h-100">
+                <span data-purecounter-start="0" data-purecounter-end="168" data-purecounter-duration="1"
+                  class="purecounter"></span>
+                <p>Workers</p>
+              </div>
+            </div>
+            <!-- End Stats Item -->
+          </div>
+        </div>
+
+        <div class="col-lg-5 order-1 order-lg-2 hero-img" data-aos="zoom-out">
+          <img src="/img/hero-img.svg" class="img-fluid mb-3 mb-lg-0" alt="" />
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Hero Section -->
+
+  <main id="main">
+    <!-- ------------ORDER TRACKING POP UP------------- -->
+    <div id="popup-track-order" class="modal fade modal-lg ">
+      <div class="modal-dialog modal-dialog-centered bg-transparent">
+        <div class="modal-content trackingCard">
+          <div class="modal-body ">
+            <!-- <span class="text-btn" data-bs-dismiss="modal"
+                >Go back
+              </span> -->
+            <div class="container px-md-4 py-5 mx-auto px-2 ">
+              <div class="innerCard ">
+
+                <div class="row d-flex justify-content-between statusBar">
+
+                  <div class="d-flex justify-content-between">
+                    <h3>
+                      ORDER
+                    </h3>
+
+
+                    <div class="flex-column text-sm-right ">
+
+                      <p style="font-size: 25px">
+                        <span class="font-weight-bold" style="color:  #c51f1f;">
+                          <%=packg.packageID%>
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+
+
+                </div>
+                <div class="container">
+
+                  <div class="row">
+                    <div class="col-12 col-md-10 hh-grayBox pt45 pb20">
+                      <div class="flex-column text-sm-center ">
+
+                        <p style="font-size: 25px">
+                          <span id="cities_left" class="font-weight-bold" style="color: #fff;">Your package has yet to
+                            travel <%=packg.path.length%> cities!</span>
+                        </p>
+                      </div>
+                      <div class="row justify-content-between">
+                        <!-- Order Shipped -->
+                        <div class="order-tracking completed">
+                          <span class="is-complete"></span>
+                          <div class="iconBox">
+                            <i class="bi bi-truck"></i>
+                            <div class="d-flex flex-column">
+                              <p class="font-weight-bold">Order Shipped</p>
+                              <h5 style="color: var(--color-primary); margin-top: 10px;">
+                                <%=packg.sourceCity%>
+                              </h5>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- en Route -->
+                        <div id="current_city_line" class="order-tracking">
+                          <span class="is-complete"></span>
+                          <div class="iconBox">
+                            <i class="bi bi-truck-front"></i>
+                            <div class="d-flex flex-column">
+                              <p class="font-weight-bold">Order En Route</p>
+                              <h5 id="current-city" style="color: var(--color-primary); margin-top: 10px;"></h5>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Order Delivered -->
+                        <div id="destination_line" class="order-tracking">
+                          <span class="is-complete"></span>
+                          <div class="iconBox">
+                            <i class="bi bi-box-seam-fill"></i>
+                            <div class="d-flex flex-column">
+                              <p class="font-weight-bold">Order Arrived</p>
+                              <h5 style="color: var(--color-primary); margin-top: 10px;">
+                                <%=packg.destinationCity%>
+                              </h5>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ------------ORDER TRACKING POP UP------------- -->
+      <!-- ======= Featured Services Section ======= -->
+      <section id="featured-services" class="featured-services">
+        <div class="container">
+          <div class="row gy-4">
+            <div class="col-lg-4 service-item d-flex" data-aos="fade-up" data-aos-delay="100">
+              <div class="icon flex-shrink-0">
+                <i class="fa-solid fa-truck"></i>
+              </div>
+              <div>
+                <h4 class="title">Safe and Secure Delivery</h4>
+                <p class="description">
+                  We ensures that your parcels get to their destination without
+                  being damaged or lost in transit.
+                </p>
+              </div>
+            </div>
+            <!-- End Service Item -->
+
+            <div class="col-lg-4 service-item d-flex" data-aos="fade-up">
+              <div class="icon flex-shrink-0">
+                <i class="fa-solid fa-balance-scale"></i>
+              </div>
+              <div>
+                <h4 class="title">Reliable and Cost-effective Service</h4>
+                <p class="description">
+                  Quickly, Securely, and Cost-effective - We provide our
+                  customers with timely and secure shipping and delivery of
+                  items.
+                </p>
+              </div>
+            </div>
+            <!-- End Service Item -->
+
+            <div class="col-lg-4 service-item d-flex" data-aos="fade-up" data-aos-delay="200">
+              <p style="color: #fff">.</p>
+              <div class="icon flex-shrink-0">
+                <i class="fa-solid fa-bullseye"></i>
+              </div>
+              <p style="color: #fff">-</p>
+              <div>
+                <h4 class="title">Accurate Order Tracking</h4>
+                <p class="description">
+                  Monitor the progress of your order from the time it is placed
+                  until it is delivered
+                </p>
+              </div>
+            </div>
+            <!-- End Service Item -->
+          </div>
+        </div>
+      </section>
+      <!-- End Featured Services Section -->
+
+      <!-- ======= About Us Section ======= -->
+      <section id="about" class="about pt-0">
+        <div class="container" data-aos="fade-up">
+          <div class="row gy-4">
+            <div class="col-lg-6 position-relative align-self-start order-lg-last order-first">
+              <img src="/img/about.jpg" class="img-fluid" alt="" />
+            </div>
+            <div class="col-lg-6 content order-last order-lg-first">
+              <h3>About Us</h3>
+              <p class="fw-bold" style="display: inline">Swift Express</p>
+              <p style="display: inline">
+                - A nationwide courier delivery service provider
+              </p>
+              <ul>
+                <li data-aos="fade-up" data-aos-delay="100">
+                  <i class="bi bi-clock"></i>
+                  <div>
+                    <h5>Real-time Package Tracking</h5>
+                    <p>
+                      The latest technology provides real-time tracking of
+                      shipments that helps to ensure that all packages arrive at
+                      their destination safely
+                    </p>
+                  </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="200">
+                  <i class="bi bi-headset"></i>
+                  <div>
+                    <h5>24/7 Customer Service</h5>
+                    <p>
+                      We strive to ensure that all of the needs of our customers
+                      are met through 24/7 assistance
+                    </p>
+                  </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="300">
+                  <i class="bi bi-emoji-laughing"></i>
+                  <div>
+                    <h5>Quality Service</h5>
+                    <p>
+                      We ensure that all our couriers are reliable, trustworthy,
+                      and professional
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End About Us Section -->
+
+      <!-- ======= Tracking Package Section ======= -->
+      <section id="track-package" class="track-package">
+        <div class="container" data-aos="zoom-out">
+          <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+              <h3>Want to Know Where Your Parcel is?</h3>
+              <p>
+                Swift Express allows order tracking from the time it is placed
+                to the time it is shipped, followed by the time it is in
+                transit, and finally the time it is delivered. The tracking
+                process also includes tracking the order’s status at each stage,
+                such as whether it has been shipped, is in transit, and has been
+                delivered.
+              </p>
+              <a class="cta-btn" href="#">Track Now!</a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End Tracking Package Section -->
+
+      <!-- ======= Membership Section ======= -->
+      <section id="membership" class="membership pt-0">
+        <div class="container" data-aos="fade-up">
+          <div class="section-header">
+            <span>Membership Preferences</span>
+            <h2>Membership Preferences</h2>
+          </div>
+
+          <div class="row gy-4">
+            <div class="col-lg-3 col" data-aos="fade-up" data-aos-delay="100">
+              <div class="membership-item">
+                <h3>Classic-Lite</h3>
+                <h4><sup>Rs.</sup>2,499<span> / 6 months</span></h4>
+                <ul>
+                  <li><i class="bi bi-check"></i> 5% off on all packages</li>
+                  <li>
+                    <i class="bi bi-check"></i> 1 time investment for 6 months
+                  </li>
+                  <li class="na">
+                    <i class="bi bi-x"></i>
+                    <span>Recommended for Businesses</span>
+                  </li>
+                  <li class="na">
+                    <i class="bi bi-x"></i>
+                    <span>Cash on Delivery Service</span>
+                  </li>
+                </ul>
+                <a href="membership-form" class="buy-btn">Buy Now</a>
+              </div>
+            </div>
+            <!-- End Membership Item -->
+
+            <div class="col-lg-3 col" data-aos="fade-up" data-aos-delay="100">
+              <div class="membership-item">
+                <h3>Classic-Pro</h3>
+                <h4><sup>Rs.</sup>5,999<span> / year</span></h4>
+                <ul>
+                  <li><i class="bi bi-check"></i> 5% off on all packages</li>
+                  <li>
+                    <i class="bi bi-check"></i> 1 time investment for an year
+                  </li>
+                  <li class="na">
+                    <i class="bi bi-x"></i>
+                    <span>Recommended for Businesses</span>
+                  </li>
+                  <li class="na">
+                    <i class="bi bi-x"></i>
+                    <span>Cash on Delivery Service</span>
+                  </li>
+                </ul>
+                <a href="membership-form" class="buy-btn">Buy Now</a>
+              </div>
+            </div>
+            <!-- End Membership Item -->
+
+            <div class="col-lg-3 col" data-aos="fade-up" data-aos-delay="200">
+              <div class="membership-item featured">
+                <h3>Gold</h3>
+                <h4><sup>Rs.</sup>9,999<sub></sub><span> / year</span></h4>
+                <ul>
+                  <li><i class="bi bi-check"></i> 15% off on all packages</li>
+                  <li>
+                    <i class="bi bi-check"></i> 1 time investment per year
+                  </li>
+                  <li>
+                    <i class="bi bi-check"></i>
+                    <span>Recommended for Businesses</span>
+                  </li>
+                  <li>
+                    <i class="bi bi-check"></i>
+                    <span>Cash on Delivery Service</span>
+                  </li>
+                </ul>
+                <a href="membership-form" class="buy-btn">Buy Now</a>
+              </div>
+            </div>
+            <!-- End Membership Item -->
+
+            <div class="col-lg-3 col" data-aos="fade-up" data-aos-delay="300">
+              <div class="membership-item">
+                <h3>Premium</h3>
+                <h4><sup>Rs.</sup>19,999<span> / year</span></h4>
+                <ul>
+                  <li><i class="bi bi-check"></i> 30% off on all packages</li>
+                  <li>
+                    <i class="bi bi-check"></i> 1 time investment per year
+                  </li>
+                  <li>
+                    <i class="bi bi-check"></i>
+                    <span>Recommended for Businesses</span>
+                  </li>
+                  <li>
+                    <i class="bi bi-check"></i>
+                    <span>Cash on Delivery Service</span>
+                  </li>
+                </ul>
+                <a href="membership-form" class="buy-btn">Buy Now</a>
+              </div>
+            </div>
+            <!-- End Membership Item -->
+          </div>
+        </div>
+      </section>
+      <!-- End Membership Section -->
+
+      <!-- ======= Testimonials Section ======= -->
+      <section id="testimonials" class="testimonials">
+        <div class="container">
+          <div class="slides-1 swiper" data-aos="fade-up">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="testimonial-item">
+                  <img src="/img/testimonials-dp.png" class="testimonial-img" alt="" />
+                  <h3>Saul Goodman</h3>
+                  <div class="stars">
+                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                      class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                  </div>
+                  <p>
+                    <i class="bi bi-quote quote-icon-left"></i>
+                    (Fetch feedback)
+                    <i class="bi bi-quote quote-icon-right"></i>
+                  </p>
+                </div>
+              </div>
+              <!-- End testimonial item -->
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+      </section>
+      <!-- End Testimonials Section -->
+  </main>
+  <!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <%- include('../partials/footer') %>
+  <!-- End Footer -->
+  <!-- End Footer -->
+
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="/vendor/aos/aos.js"></script>
+  <script src="/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/js/main.js"></script>
+  <!-- Chatbot JS File -->
+  <script src="/js/chatbot.js"></script>
+</body>
+
+</html>
