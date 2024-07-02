@@ -4,7 +4,6 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import multer from "multer";
 
-import { verifyToken } from "./middleware/auth.js";
 import { register, login, forgetPass, trackParcel } from "./controllers/employees.js";
 import { createPackage, readPackage } from "./controllers/packages.js";
 import { createMember, findMember } from "./controllers/members.js";

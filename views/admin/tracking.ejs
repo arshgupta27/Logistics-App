@@ -106,69 +106,9 @@
       </div>
     </section><!-- End Membership Search Section -->
 
-    <!-- ======= Get a Quote Section ======= -->
-    <!-- <section id="get-a-quote" class="get-a-quote">
-      <div class="container" data-aos="fade-up">
 
-        <div class="section-title">
-          <h2>Package Tracking Log</h2>
-        </div>
 
-        <div class="row g-0">
 
-          <div class="col">
-            <form action="forms/quote.php" method="post" class="php-email-form">
-              
-                <div class="row g-0 mt-3">
-                  <div class="col">
-                    <form action="#" method="" class="php-email-form">
-                      <table id="tracking_table_id" class="table table-borderless table-hover">
-                        <thead>
-                            <tr>
-                                <th>Full Name</th>
-                                <th>CNIC</th>
-                                <th>Source</th>
-                                <th>Destination</th>
-                                <th>Tracking No.</th>
-                            </tr>
-                        </thead>
-                      </table>
-
-                    </form>
-                  </div>
-
-                </div>
-              
-            </form>
-          </div>
-
-        </div>
-
-      </div>
-    </section> -->
-    <!-- End Get a Quote Section -->
-
-    <script>
-      function validation() {
-        // console.log(packg);
-        var pathLength = Number("<%=packg.path.length%>");
-        var cities = "<%=packg.path%>".toString();
-        var citiesArray = cities.split(",");
-        var index = 0;
-        var interVal = setInterval(function() {
-          document.getElementById("current-city").innerHTML = citiesArray[index++];
-          document.getElementById("current_city_line").className += " completed";
-          document.getElementById("cities_left").innerHTML = `Your package has yet to travel ${citiesArray.length-index} cities!`
-          if (citiesArray[index] == citiesArray[citiesArray.length - 1]) {
-            document.getElementById("cities_left").innerHTML = `Package Arrived!`
-            document.getElementById("destination_line").className += " completed";
-            clearInterval(interVal);
-          }
-        }, 4000);
-        
-        $('#popup-track-order').modal('show');
-      }
-    </script>
     <!-- ------------ORDER TRACKING POP UP------------- -->
     <div id="popup-track-order" class="modal fade modal-lg ">
       <div class="modal-dialog modal-dialog-centered bg-transparent">
@@ -256,6 +196,27 @@
     </div>
     <!-- ------------ORDER TRACKING POP UP------------- -->
 
+    <script>
+      function validation() {
+        // console.log(packg);
+        var pathLength = Number("<%=packg.path.length%>");
+        var cities = "<%=packg.path%>".toString();
+        var citiesArray = cities.split(",");
+        var index = 0;
+        var interVal = setInterval(function() {
+          document.getElementById("current-city").innerHTML = citiesArray[index++];
+          document.getElementById("current_city_line").className += " completed";
+          document.getElementById("cities_left").innerHTML = `Your package has yet to travel ${citiesArray.length-index} cities!`
+          if (citiesArray[index] == citiesArray[citiesArray.length - 1]) {
+            document.getElementById("cities_left").innerHTML = `Package Arrived!`
+            document.getElementById("destination_line").className += " completed";
+            clearInterval(interVal);
+          }
+        }, 10000);
+        
+        $('#popup-track-order').modal('show');
+      }
+    </script>
   </main><!-- End #main -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>

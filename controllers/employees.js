@@ -29,14 +29,16 @@ export { user };
 
 // Logging in
 export const login = async (req, res) => {
-    const JWT_SECRET= "v457hh756fh7n67vn";
+    const JWT_SECRET = "v457hh756fh7n67vn";
     try {
         const { emp_id, password } = req.body;
         const Emp = await Employee.findOne({ emp_id: emp_id });
-        if (!Emp) return res.status(400).json({ msg: "Employee does not exist." });
+        if (!Emp) {
+            return res.status(400).render("admin/admin-home", { alert: "Employee does not exist." });
+        }
 
         const isMatch = await bcrypt.compare(password, Emp.password);
-        if (!isMatch) return res.status(400).json({ msg: "Invalid credentials." })
+        if (!isMatch) return res.status(400).render("admin/admin-home", { alert: "Invalid credentials." });
         const token = jwt.sign({ id: Emp._id }, JWT_SECRET);
         delete Emp.password;
         user = Emp;

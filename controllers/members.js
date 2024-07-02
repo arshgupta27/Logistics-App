@@ -73,7 +73,8 @@ export const findMember = (req, res) => {
   Member.findOne({ memberCnic: req.body.memberCnic }, (error, member) => {
     if (member) {
       memberFound = member;
-      console.log(member);
-    } else console.log(error);
+      console.log("M: " + member);
+      res.send({data: member});
+    } else console.log("E: " + error);
   })
 }
