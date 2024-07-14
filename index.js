@@ -21,7 +21,7 @@ app.set('view engine', 'ejs');
 
 // Database connection
 mongoose.set('strictQuery', true);
-mongoose.connect("mongodb://127.0.0.1:27017/courier-router");
+mongoose.connect("mongodb+srv://admin-arsh:arsh@123@cluster0.w8ddq9o.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
 
 // define storage for the files
 const Storage = multer.diskStorage({
