@@ -21,7 +21,7 @@ app.set('view engine', 'ejs');
 
 // Database connection
 mongoose.set('strictQuery', true);
-mongoose.connect("mongodb+srv://admin-arsh:arsh@123@cluster0.w8ddq9o.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
+mongoose.connect("mongodb+srv://admin-arsh:arsh123@cluster0.w8ddq9o.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
 
 // define storage for the files
 const Storage = multer.diskStorage({
