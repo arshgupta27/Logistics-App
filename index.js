@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static('assets'));
 app.set('view engine', 'ejs');
-
+PORT = process.env.PORT || 3000;
 
 // Database connection
 mongoose.set('strictQuery', true);
@@ -93,4 +93,4 @@ app.get("/tracking", (req, res) => {
     res.render("admin/tracking", { user, packg });
 });
 
-app.listen(3000, () => console.log(`Server running on port 3000`));
+app.listen(PORT, () => console.log(`Server running on port 3000`));
