@@ -12,8 +12,13 @@ export const register = async (req, res) => {
         const salt = await bcrypt.genSalt();
         const passwordHash = await bcrypt.hash(password, salt);
 
-        const newEmployee = new Employee({ avatar: { data: req.file.originalname, contentType: req.file.mimetype },
-        fname, lname, emp_id, email, password: passwordHash, cnic, phoneNo });
+        let avatar;
+        if (req.file) {
+            avatar = { data: req.file.originalname, contentType: req.file.mimetype };
+        } else {
+            avatar = { data: "image.png", contentType: "image/png" };
+        }
+        const newEmployee = new Employee({ avatar, fname, lname, emp_id, email, password: passwordHash, cnic, phoneNo });
 
         newEmployee.save((error) => {
             if (error) res.send(error);

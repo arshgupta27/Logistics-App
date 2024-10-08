@@ -21,7 +21,7 @@ const PORT = process.env.PORT || 3000;
 
 // Database connection
 mongoose.set('strictQuery', true);
-mongoose.connect("mongodb+srv://admin-arsh:"+ process.env.PASS + "@cluster0.w8ddq9o.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
+mongoose.connect("mongodb+srv://admin-arsh:"+ process.env.PASS + "@cluster0.w8ddq9o.mongodb.net/logistics",);
 
 // define storage for the files
 const Storage = multer.diskStorage({
